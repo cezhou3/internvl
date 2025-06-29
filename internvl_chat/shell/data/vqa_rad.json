@@ -1,0 +1,9 @@
+{
+  "VQA_RAD": {
+    "root": "/workspace/data/VQA-RAD/images",
+    "annotation": "/workspace/data/VQA-RAD/vqa_rad_train.json",
+    "data_augment": false,
+    "repeat_time": 1,
+    "length": 1793
+  }
+}

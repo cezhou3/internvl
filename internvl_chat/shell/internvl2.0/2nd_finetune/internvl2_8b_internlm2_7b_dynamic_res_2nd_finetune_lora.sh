@@ -29,10 +29,10 @@ torchrun \
   --nproc_per_node=${GPUS} \
   --master_port=${MASTER_PORT} \
   internvl/train/internvl_chat_finetune.py \
-  --model_name_or_path "./pretrained/InternVL2-8B" \
+  --model_name_or_path "../../../model/InternVL2-8B" \
   --conv_style "internlm2-chat" \
   --output_dir ${OUTPUT_DIR} \
-  --meta_path "./shell/data/internvl_1_2_finetune_custom.json" \
+  --meta_path "./shell/data/vqa_rad.json" \
   --overwrite_output_dir True \
   --force_image_size 448 \
   --max_dynamic_patch 6 \
@@ -41,9 +41,9 @@ torchrun \
   --freeze_llm True \
   --freeze_mlp True \
   --freeze_backbone True \
-  --use_llm_lora 16 \
+  --use_llm_lora 2 \
   --vision_select_layer -1 \
-  --dataloader_num_workers 4 \
+  --dataloader_num_workers 2 \
   --bf16 True \
   --num_train_epochs 1 \
   --per_device_train_batch_size ${PER_DEVICE_BATCH_SIZE} \
@@ -64,6 +64,6 @@ torchrun \
   --dynamic_image_size True \
   --use_thumbnail True \
   --ps_version 'v2' \
-  --deepspeed "zero_stage1_config.json" \
+  --deepspeed "zero_stage3_config.json" \
   --report_to "tensorboard" \
   2>&1 | tee -a "${OUTPUT_DIR}/training_log.txt"
